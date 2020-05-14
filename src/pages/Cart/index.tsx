@@ -32,7 +32,7 @@ interface Product {
   title: string;
   image_url: string;
   price: number;
-  quantity: number;
+  quantity?: number;
 }
 
 const Cart: React.FC = () => {
@@ -43,7 +43,7 @@ const Cart: React.FC = () => {
   }
 
   function handleDecrement(id: string): void {
-    // TODO
+    decrement(id);
   }
 
   const cartTotal = useMemo(() => {
