@@ -33,10 +33,13 @@ const FloatingCart: React.FC = () => {
     return formatValue(totalValue);
   }, [products]);
 
-  const totalItensInCart = useMemo(() => {
-    // TODO RETURN THE SUM OF THE QUANTITY OF THE PRODUCTS IN THE CART
+  const totalItemsInCart = useMemo(() => {
+    const totalItems = products.reduce(
+      (total, currentProduct) => total + currentProduct.quantity,
+      0,
+    );
 
-    return 0;
+    return totalItems;
   }, [products]);
 
   return (
@@ -46,7 +49,7 @@ const FloatingCart: React.FC = () => {
         onPress={() => navigation.navigate('Cart')}
       >
         <FeatherIcon name="shopping-cart" size={24} color="#fff" />
-        <CartButtonText>{`${totalItensInCart} itens`}</CartButtonText>
+        <CartButtonText>{`${totalItemsInCart} itens`}</CartButtonText>
       </CartButton>
 
       <CartPricing>

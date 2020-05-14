@@ -47,15 +47,22 @@ const Cart: React.FC = () => {
   }
 
   const cartTotal = useMemo(() => {
-    // TODO RETURN THE SUM OF THE QUANTITY OF THE PRODUCTS IN THE CART
+    const totalValue = products.reduce(
+      (total, currentProduct) =>
+        total + currentProduct.price * currentProduct.quantity,
+      0,
+    );
 
-    return formatValue(0);
+    return formatValue(totalValue);
   }, [products]);
 
-  const totalItensInCart = useMemo(() => {
-    // TODO RETURN THE SUM OF THE QUANTITY OF THE PRODUCTS IN THE CART
+  const totalItemsInCart = useMemo(() => {
+    const totalItems = products.reduce(
+      (total, currentProduct) => total + currentProduct.quantity,
+      0,
+    );
 
-    return 0;
+    return totalItems;
   }, [products]);
 
   return (
@@ -107,7 +114,7 @@ const Cart: React.FC = () => {
       </ProductContainer>
       <TotalProductsContainer>
         <FeatherIcon name="shopping-cart" color="#fff" size={24} />
-        <TotalProductsText>{`${totalItensInCart} itens`}</TotalProductsText>
+        <TotalProductsText>{`${totalItemsInCart} itens`}</TotalProductsText>
         <SubtotalValue>{cartTotal}</SubtotalValue>
       </TotalProductsContainer>
     </Container>
